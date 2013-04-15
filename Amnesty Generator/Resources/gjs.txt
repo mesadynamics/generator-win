@@ -1,4 +1,4 @@
-﻿// Copyright 2006-2007 Mesa Dynamics, LLC
+﻿// Copyright 2006-2013 Danny Espinoza
 
 var GeneratorPlugin = 0;
 
