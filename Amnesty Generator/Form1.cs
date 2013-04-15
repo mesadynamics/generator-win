@@ -1119,72 +1119,14 @@ namespace Amnesty_Generator
 
         private void checkForUpdatesToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            Cursor = Cursors.WaitCursor;
-            System.Net.HttpWebRequest req = (System.Net.HttpWebRequest) System.Net.WebRequest.Create("http://www.amnestywidgets.com/updates/generator_win.xml");
-            req.UserAgent = "Amnesty Generator/1.5 (Windows)";
-            req.Timeout = 10000;
-
-            System.Net.HttpWebResponse res = (System.Net.HttpWebResponse) req.GetResponse();
-            StreamReader stream = new StreamReader(res.GetResponseStream(), Encoding.UTF8);
-            string xml = stream.ReadToEnd();
- 
-            res.Close();
-            stream.Close();
-
-            Cursor = Cursors.Arrow;
-
-            if (xml != null)
-            {
-                int start = xml.IndexOf("<version>");
-                if (start > 0)
-                {
-                    start += 9;
-                    int end = xml.IndexOf("</version>", start);
-                    if (end > start)
-                    {
-                        string v = xml.Substring(start, end - start);
-                        int version = 0;
-
-                        try
-                        {
-                            version = Int32.Parse(v);
-                            if(version > 150)
-                            {
-                                DialogResult dr = MessageBox.Show(Amnesty_Generator.Properties.Resources.String4, "", MessageBoxButtons.YesNo);
-                                if (dr == DialogResult.Yes)
-                                {
-                                    System.Diagnostics.Process p = new System.Diagnostics.Process();
-                                    p.StartInfo.Verb = "open";
-                                    p.StartInfo.FileName = "http://www.amnestywidgets.com/updates/generator_win.htm";
-                                    p.Start();
-                                }
-                            }
-                            else
-                                MessageBox.Show(Amnesty_Generator.Properties.Resources.String5);
-                        }
-
-                        catch
-                        {
-                        }
-                    }
-                }
-            }
         }
 
         private void mesaDynamicsOnlineToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            System.Diagnostics.Process p = new System.Diagnostics.Process();
-            p.StartInfo.Verb = "open";
-            p.StartInfo.FileName = "http://www.amnestywidgets.com";
-            p.Start();
         }
 
         private void contactCustomerSupportToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            System.Diagnostics.Process p = new System.Diagnostics.Process();
-            p.StartInfo.Verb = "open";
-            p.StartInfo.FileName = "mailto:support@mesadynamics.com?subject=Amnesty%20Generator%20Vista";
-            p.Start();
         }
 
         private void aboutAmnestyGeneratorToolStripMenuItem_Click(object sender, EventArgs e)
